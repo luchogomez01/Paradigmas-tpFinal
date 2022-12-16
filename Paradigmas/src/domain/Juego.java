@@ -3,8 +3,10 @@ package domain;
 import java.awt.Graphics;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 public class Juego extends JPanel{
@@ -12,6 +14,8 @@ public class Juego extends JPanel{
 	//Obtengo objetos de laberinto y pj
 	Laberinto laberinto = new Laberinto();
 	Personaje personaje = new Personaje();
+	public static int nivel = 1;
+	public static int muertes = 0;
 	
 	public Juego() {
 		addKeyListener((KeyListener) new KeyListener() {
@@ -44,7 +48,28 @@ public class Juego extends JPanel{
 		personaje.paint(grafico);
 	}
 	
+	// Aumentar lvl
+    public static int cambiaNivel(){
+        return nivel++;
+    }
+
+    // Obtener lvl
+    public static int obtieneNivel(){
+        return nivel;
+    }
+    
+    // Aumentar muertes
+    public static int aumentarMuertes() {
+    	return muertes ++;
+    }
+    
+    public static int obtieneMuertes() {
+    	return muertes;
+    }
+	
 	public static void main (String[] args) {
+		
+		JOptionPane.showMessageDialog(null, "Bienvenido al laberinto");
 		JFrame ventana =  new JFrame("Laberinto");
 		Juego game = new Juego();
 		ventana.add(game);
@@ -56,20 +81,24 @@ public class Juego extends JPanel{
 		
 		//Bucle infinito para que repinte al pj
 		
-		while(true) {
-			//try y catch para manejar hilos
-			
-			//Retraso para repintar el juego
-			try {
-				Thread.sleep(10);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			
-			//Para reimprimir el juego
-			game.repaint();
-		}
-	}
+        while(true){
+            try {
+                Thread.sleep(10);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Juego.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            game.repaint();
+
+            if(obtieneNivel()>3){
+                JOptionPane.showMessageDialog(null, "Ganaste: cantidad de muertes: " + obtieneMuertes());
+                System.exit(0);
+            }
+            
+            if(obtieneMuertes()>=15){
+                JOptionPane.showMessageDialog(null, "Perdiste: No te quedan mas muertes");
+                System.exit(0);
+            }
+        }
 	
+	}
 }
