@@ -26,19 +26,33 @@ public class Personaje {
 	
 	
 	public void paint (Graphics grafico) {
-		grafico.setColor(Color.white);
-		grafico.fillOval(ejeX, ejeY, width, height);
+		grafico.setColor(Color.pink);
+                grafico.fillOval(ejeX, ejeY, width, height);
+                grafico.setColor(Color.BLACK);
+                grafico.drawOval(ejeX, ejeY, width, height);
+        
+                //ojos
+                grafico.setColor(Color.WHITE);
+                grafico.fillOval(ejeX+7, ejeY+8, 13, 13);
+                grafico.fillOval(ejeX+21, ejeY+8, 13, 13);
+                grafico.setColor(Color.black);
+                grafico.fillOval(ejeX+11, ejeY+12, 5, 5);
+                grafico.fillOval(ejeX+25, ejeY+12, 5, 5);
+        
+                //boca
+                grafico.setColor(Color.black);
+                grafico.fillOval(ejeX+7,ejeY+24,27,10);
 		
 		if(muertes <=15) {		
 			//Imprimo muertes
-			grafico.drawString("Muertes: " + Integer.toString(muertes), 10, 20);
-			grafico.setColor(Color.white);
+			grafico.drawString("Muertes: " + Integer.toString(muertes), 200, 20);
+			grafico.setColor(Color.yellow);
 		}
 		
 		if(nivel <= 3) {			
-			//Imprimo muertes
+			//Imprimo niveles
 			grafico.drawString("Nivel: " + Integer.toString(nivel), 100, 20);
-			grafico.setColor(Color.white);
+			grafico.setColor(Color.yellow);
 		}
 	}
 	
