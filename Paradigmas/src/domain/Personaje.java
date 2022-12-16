@@ -21,14 +21,25 @@ public class Personaje {
 	//Variable contador de muertes
 	private int muertes = 0; 
 	
+	//Variable contador de niveles
+	private int nivel = 1; 
+	
 	
 	public void paint (Graphics grafico) {
 		grafico.setColor(Color.white);
 		grafico.fillOval(ejeX, ejeY, width, height);
 		
-		//Imprimo muertes
-		grafico.drawString(Integer.toString(muertes), 10, 20);
-		grafico.setColor(Color.white);
+		if(muertes <=15) {		
+			//Imprimo muertes
+			grafico.drawString("Muertes: " + Integer.toString(muertes), 10, 20);
+			grafico.setColor(Color.white);
+		}
+		
+		if(nivel <= 3) {			
+			//Imprimo muertes
+			grafico.drawString("Nivel: " + Integer.toString(nivel), 100, 20);
+			grafico.setColor(Color.white);
+		}
 	}
 	
 	//Funcion para que el pj se mueva
@@ -52,11 +63,23 @@ public class Personaje {
 			ejeY = ejeY + posicion;
 		}
 		
+		//Condicional que mata al pj si toca pared
 		if(lab[ejeY/40][ejeX/40] == 1) {
 			ejeX = 40; 
 			ejeY = 40; 
 			
 			muertes ++;
+			Juego.aumentarMuertes();
+		}
+		
+		//Condicional que detecta cambio de lvl
+		if(lab[ejeY/40][ejeX/40] == 2) {
+			ejeX = 40; 
+			ejeY = 40; 
+			
+			nivel ++;
+			
+			Juego.cambiaNivel();
 		}
 
 
