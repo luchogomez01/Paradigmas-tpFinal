@@ -25,18 +25,21 @@ import java.awt.Graphics;
 			//Imprimo laberinto en la app
 			for(fila=0; fila<numFila; fila ++) {
 				for(columna=0; columna<numColumn; columna ++) {
-					if(lab[fila][columna] == 1) {
-						grafico.setColor(Color.red);
-						grafico.fillRect(columna*40, fila*40, widthPared, heightPared);
+					if(lab[fila][columna]==1){
+                                                if(Juego.obtieneNivel()==1){grafico.setColor(Color.darkGray);}
+                                                if(Juego.obtieneNivel()==2){grafico.setColor(Color.pink);}
+                                                if(Juego.obtieneNivel()>=3){grafico.setColor(Color.magenta);}    
+                                                grafico.fillRect(columna*40, fila*40, widthPared, heightPared);                                                
 					} else if(lab[fila][columna] == 2) {
 						grafico.setColor(Color.green);
 						grafico.fillRect(columna*40, fila*40, widthPared, heightPared);
 					} else if (lab[fila][columna] == 0) {
-						grafico.setColor(Color.black);
-						grafico.fillRect(columna*40, fila*40, widthPared, heightPared);
+                                                grafico.setColor(Color.white);
+                                                grafico.fillRect(columna*40, fila*40, widthPared, heightPared);
+						
 					}
-				};
-			};
+				}
+			}
 		}
 		
 		//Funcion que genera la matriz del laberinto 
@@ -97,7 +100,4 @@ import java.awt.Graphics;
 		
 			return lab;
 		}
-		
-
-		
-}
+        }
