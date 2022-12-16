@@ -69,7 +69,7 @@ public class Juego extends JPanel{
 	
 	public static void main (String[] args) {
 		
-		JOptionPane.showMessageDialog(null, "Bienvenido al laberinto");
+		JOptionPane.showMessageDialog(null, "Bienvenido al laberinto\nCantidad de niveles: 3\nLimite de muertes: 15");
 		JFrame ventana =  new JFrame("Laberinto");
 		Juego game = new Juego();
 		ventana.add(game);
